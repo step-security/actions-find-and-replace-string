@@ -12,6 +12,7 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
       - name: Run find-and-replace to remove refs/heads/
         uses: ./
         id: findandreplace
@@ -19,8 +20,10 @@ jobs:
           source: ${{ github.ref }}
           find: 'refs/heads/'
           replace: ''
+
       - name: Get the above output
         run: echo "The replaced value is ${{ steps.findandreplace.outputs.value }}"
+
       - name: Run find-and-replace to remove slashes
         uses: ./
         id: findandreplace2
@@ -28,5 +31,6 @@ jobs:
           source: ${{ steps.findandreplace.outputs.value }}
           find: '/'
           replace: '-'
+          
       - name: Get the final output
         run: echo "The replaced value is ${{ steps.findandreplace2.outputs.value }}"

@@ -1,42 +1,91 @@
-# Find and replace strings
+# Find and Replace Strings
 
-This action executes find-and-replace on a given string (hint: use `${{ github.ref }}` to get your branch name and apply this on it for use in another action). 
+A GitHub Action that performs find and replace operations on strings. Perfect for transforming branch names, processing environment variables, or manipulating any string data in your workflows.
+
+## Features
+
+- Find and replace text within any string
+- Option to replace first occurrence or all occurrences
+- TypeScript implementation with comprehensive testing
+- Lightweight and fast execution
 
 ## Inputs
 
 ### `source`
 
-**Required** The source string to apply this action to
+**Required** The source string to perform find and replace on
 
 ### `find`
 
-**Required** The text you want to search for within the branch name (eg. `ref/heads/`)
+**Required** The text to search for within the source string
 
 ### `replace`
 
-**Required** The text you want to replace (eg. `head-`, ``, `root_`)
+**Required** The text to replace found occurrences with
 
 ### `replaceAll`
 
-**Optional** Should replace all occurrences? (only 'true' string will be interpreted positive)
+**Optional** Replace all occurrences (`true`) or just the first one (`false`, default)
 
 ## Outputs
 
 ### `value`
 
-The new value containing the found-and-replaced string.
+The resulting string after find and replace operation
 
-### Example usage
+## Example Usage
+
+### Basic Usage
 
 ```yaml
-uses: step-security/actions-find-and-replace-string@v5
-with:
-    source: ${{ github.ref }} # this translates to ref/heads/main on the main branch, but can be any arbitrary string 
-    find: 'ref/heads/'        # we want to remove ref/heads/ from source 
-    replace: ''               # and replace it with a blank string (ie. removing it)
+- name: Remove refs/heads/ from branch name
+  uses: step-security/actions-find-and-replace-string@v5
+  id: branch-name
+  with:
+    source: ${{ github.ref }}
+    find: 'refs/heads/'
+    replace: ''
+
+- name: Use cleaned branch name
+  run: echo "Branch: ${{ steps.branch-name.outputs.value }}"
 ```
 
-This will output `main`.
+### Replace All Occurrences
 
-Check out `.github/workflows/main.yml` for more examples
+```yaml
+- name: Replace dots with dashes
+  uses: step-security/actions-find-and-replace-string@v5
+  id: sanitize
+  with:
+    source: 'test.example.com'
+    find: '.'
+    replace: '-'
+    replaceAll: 'true'
+    # Output: test-example-com
+```
+
+### Processing Environment Variables
+
+```yaml
+- name: Transform environment name
+  uses: step-security/actions-find-and-replace-string@v5
+  id: env-name
+  with:
+    source: ${{ github.event.pull_request.head.ref }}
+    find: 'feature/'
+    replace: 'preview-'
+    # Transforms: feature/new-login -> preview-new-login
+```
+
+## Common Use Cases
+
+- Extracting branch names from git references
+- Sanitizing strings for use in URLs or file names
+- Transforming environment variable values
+- Processing configuration strings
+- Cleaning up user input or external data
+
+## Development
+
+This action is built with TypeScript and includes comprehensive tests. The codebase follows modern development practices with proper type safety and error handling.
 

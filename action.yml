@@ -1,24 +1,24 @@
 name: 'Find-and-replace strings'
-description: 'Finds and replaces text on a string'
+description: 'A GitHub Action that performs find and replace operations on strings.'
 branding:
-  color: purple
-  icon: copy
+  icon: 'file-text'
+  color: 'blue'
 inputs:
   source:
-    description: 'The text you want to run this action on'
+    description: 'The source string to perform find and replace on'
     required: true
   find:
-    description: 'The text you are looking for'
+    description: 'The text to search for within the source string'
     required: true
   replace:
-    description: 'The text you want to replace with'
+    description: 'The text to replace found occurrences with'
     required: true
   replaceAll:
-    description: 'Replace all occurrences?'
+    description: 'Replace all occurrences (true) or just the first one (false, default)'
     required: false
 outputs:
   value:
-    description: 'The new value after find-and-replace has been run'
+    description: 'The resulting string after find and replace operation'
 runs:
   using: 'node20'
   main: 'dist/index.js'
