@@ -7330,23 +7330,20 @@ var __importStar = (this && this.__importStar) || (function () {
         return result;
     };
 })();
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.validateSubscription = validateSubscription;
 exports.getInputs = getInputs;
 exports.performFindReplace = performFindReplace;
 exports.main = main;
 const core = __importStar(__nccwpck_require__(7484));
-const axios_1 = __importDefault(__nccwpck_require__(7269));
+const axios_1 = __importStar(__nccwpck_require__(7269));
 async function validateSubscription() {
     const API_URL = `https://agent.api.stepsecurity.io/v1/github/${process.env.GITHUB_REPOSITORY}/actions/subscription`;
     try {
         await axios_1.default.get(API_URL, { timeout: 3000 });
     }
     catch (error) {
-        if (axios_1.default.isAxiosError(error) && error.response) {
+        if ((0, axios_1.isAxiosError)(error) && error.response?.status === 403) {
             console.error('Subscription is not valid. Reach out to support@stepsecurity.io');
             process.exit(1);
         }
