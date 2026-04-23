@@ -1,3 +1,5 @@
+[![StepSecurity Maintained Action](https://raw.githubusercontent.com/step-security/maintained-actions-assets/main/assets/maintained-action-banner.png)](https://docs.stepsecurity.io/actions/stepsecurity-maintained-actions)
+
 # Find and Replace Strings
 
 A GitHub Action that performs find and replace operations on strings. Perfect for transforming branch names, processing environment variables, or manipulating any string data in your workflows.

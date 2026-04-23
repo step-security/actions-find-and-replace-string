@@ -20,5 +20,5 @@ outputs:
   value:
     description: 'The resulting string after find and replace operation'
 runs:
-  using: 'node20'
+  using: 'node24'
   main: 'dist/index.js'
