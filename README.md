@@ -41,7 +41,7 @@ The resulting string after find and replace operation
 
 ```yaml
 - name: Remove refs/heads/ from branch name
-  uses: step-security/actions-find-and-replace-string@v5
+  uses: step-security/actions-find-and-replace-string@v6
   id: branch-name
   with:
     source: ${{ github.ref }}
@@ -56,7 +56,7 @@ The resulting string after find and replace operation
 
 ```yaml
 - name: Replace dots with dashes
-  uses: step-security/actions-find-and-replace-string@v5
+  uses: step-security/actions-find-and-replace-string@v6
   id: sanitize
   with:
     source: 'test.example.com'
@@ -70,7 +70,7 @@ The resulting string after find and replace operation
 
 ```yaml
 - name: Transform environment name
-  uses: step-security/actions-find-and-replace-string@v5
+  uses: step-security/actions-find-and-replace-string@v6
   id: env-name
   with:
     source: ${{ github.event.pull_request.head.ref }}
