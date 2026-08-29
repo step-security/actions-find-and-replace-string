@@ -1,6 +1,6 @@
 {
   "name": "find-and-replace-string",
-  "version": "5.0.1",
+  "version": "6.0.0",
   "scripts": {
     "build": "rm -rf dist && ncc build src/index.ts",
     "test": "jest",
@@ -11,9 +11,9 @@
   "main": "dist/index.js",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.10.0",
-    "axios": "^1.6.2",
-    "@vercel/ncc": "^0.38.1"
+    "@actions/core": "^2.0.3",
+    "axios": "^1.19.0",
+    "@vercel/ncc": "^0.45.0"
   },
   "devDependencies": {
     "@types/jest": "^29.5.5",

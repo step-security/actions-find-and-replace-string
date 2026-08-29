@@ -3,3 +3,5 @@
 .env.testßß
 
 node_modules/
+.idea
+.vscode
